@@ -4,11 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start:dev": "nodemon index.ts",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "nodemon .",
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
