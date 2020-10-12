@@ -26,4 +26,4 @@ routerUsers.put('/:uid', [
     validarcampos,
 ], uC.updateUser);
 
-routerUsers.delete('/:uid', uC.deleteUser);
+routerUsers.delete('/:uid', validaJWT, uC.deleteUser);
