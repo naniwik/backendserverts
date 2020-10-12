@@ -16,7 +16,7 @@ exports.dbCon = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 exports.dbCon = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect(process.env.DB_CON, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+        yield mongoose_1.default.connect(process.env.DB_CON, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true });
         console.info('db online ');
     }
     catch (error) {
