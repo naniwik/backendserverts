@@ -1,6 +1,6 @@
 "use strict";
 /*
-Ruta: '/api/usuarios'
+Ruta: '/api/todo'
 */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -22,25 +22,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.routerUsers = void 0;
+exports.routerbusquedas = void 0;
 const express_1 = require("express");
-const uC = __importStar(require("../controllers/usuario"));
-const express_validator_1 = require("express-validator");
-const validar_campos_1 = require("../middlewares/validar-campos");
+const uC = __importStar(require("../controllers/busquedas"));
 const valida_jwt_1 = require("../middlewares/valida-jwt");
-exports.routerUsers = express_1.Router();
-exports.routerUsers.get('/', [valida_jwt_1.validaJWT], uC.getUsuarios);
-exports.routerUsers.post('/', [
-    valida_jwt_1.validaJWT,
-    express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
-    express_validator_1.check('password', 'El password es obligatorio').notEmpty(),
-    express_validator_1.check('email', 'El email es obligatorio').isEmail(),
-    validar_campos_1.validarcampos,
-], uC.crearUsuario);
-exports.routerUsers.put('/:uid', [
-    valida_jwt_1.validaJWT,
-    express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
-    validar_campos_1.validarcampos,
-], uC.updateUser);
-exports.routerUsers.delete('/:uid', valida_jwt_1.validaJWT, uC.deleteUser);
-//# sourceMappingURL=usuarios.js.map
+exports.routerbusquedas = express_1.Router();
+exports.routerbusquedas.get('/:uid', [valida_jwt_1.validaJWT], uC.getbusquedas);
+exports.routerbusquedas.get('/coleccion/:tabla/:termino', [valida_jwt_1.validaJWT], uC.getDocumentos);
+//# sourceMappingURL=busquedas.js.map

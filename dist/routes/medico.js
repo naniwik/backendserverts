@@ -1,6 +1,6 @@
 "use strict";
 /*
-Ruta: '/api/usuarios'
+Ruta: '/api/medico'
 */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -22,25 +22,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.routerUsers = void 0;
+exports.routerMedicos = void 0;
 const express_1 = require("express");
-const uC = __importStar(require("../controllers/usuario"));
+const uC = __importStar(require("../controllers/medico"));
 const express_validator_1 = require("express-validator");
 const validar_campos_1 = require("../middlewares/validar-campos");
 const valida_jwt_1 = require("../middlewares/valida-jwt");
-exports.routerUsers = express_1.Router();
-exports.routerUsers.get('/', [valida_jwt_1.validaJWT], uC.getUsuarios);
-exports.routerUsers.post('/', [
+exports.routerMedicos = express_1.Router();
+exports.routerMedicos.get('/', [valida_jwt_1.validaJWT], uC.getMedicos);
+exports.routerMedicos.post('/', [
     valida_jwt_1.validaJWT,
     express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
-    express_validator_1.check('password', 'El password es obligatorio').notEmpty(),
-    express_validator_1.check('email', 'El email es obligatorio').isEmail(),
+    express_validator_1.check('hospital', 'El hospital es obligatorio').isMongoId(),
     validar_campos_1.validarcampos,
-], uC.crearUsuario);
-exports.routerUsers.put('/:uid', [
+], uC.createMedico);
+exports.routerMedicos.put('/:uid', [
     valida_jwt_1.validaJWT,
     express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
+    express_validator_1.check('hospital', 'El hospital es obligatorio').isMongoId(),
     validar_campos_1.validarcampos,
-], uC.updateUser);
-exports.routerUsers.delete('/:uid', valida_jwt_1.validaJWT, uC.deleteUser);
-//# sourceMappingURL=usuarios.js.map
+], uC.updateMedico);
+exports.routerMedicos.delete('/:uid', valida_jwt_1.validaJWT, uC.deleteMedico);
+//# sourceMappingURL=medico.js.map

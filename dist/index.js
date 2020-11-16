@@ -11,6 +11,10 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const usuarios_1 = require("./routes/usuarios");
 const auth_1 = require("./routes/auth");
+const hospitales_1 = require("./routes/hospitales");
+const medico_1 = require("./routes/medico");
+const busquedas_1 = require("./routes/busquedas");
+const uploads_1 = require("./routes/uploads");
 dotenv_1.default.config();
 // Inicializar variables
 const app = express_1.default();
@@ -24,13 +28,13 @@ config_1.dbCon();
 // main_user
 // idk7pT4PBLVzZuya
 // Rutas
-app.get('/', (req, res, next) => {
+app.get("/", (req, res, next) => {
     res.status(200).json({
         ok: true,
-        mensaje: 'OK'
+        mensaje: "OK",
     });
 });
-app.use('/api/usuarios', usuarios_1.routerUsers);
+app.use("/api/usuarios", usuarios_1.routerUsers);
 // app.get('/api/usuarios', (req, res, next)=> {
 //     res.status(200).json({
 //         ok:true,
@@ -40,10 +44,14 @@ app.use('/api/usuarios', usuarios_1.routerUsers);
 //         }]
 //     })
 // });
-app.use('/login', auth_1.routerLogin);
+app.use("/login", auth_1.routerLogin);
+app.use("/api/hospitales", hospitales_1.routerHospitales);
+app.use("/api/medico", medico_1.routerMedicos);
+app.use("/api/todo", busquedas_1.routerbusquedas);
+app.use("/api/uploads", uploads_1.routeruploads);
 // escuchar peticiones
-const port = (process.env.SERVER_PORT);
+const port = process.env.SERVER_PORT;
 app.listen(port, () => {
-    console.log('Express server ' + port + ': \x1b[32m%s\x1b[0m', 'online');
+    console.log("Express server " + port + ": \x1b[32m%s\x1b[0m", "online");
 });
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 "use strict";
 /*
-Ruta: '/api/usuarios'
+Ruta: '/api/hospitales'
 */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -22,25 +22,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.routerUsers = void 0;
+exports.routerHospitales = void 0;
 const express_1 = require("express");
-const uC = __importStar(require("../controllers/usuario"));
+const uC = __importStar(require("../controllers/hospitales"));
 const express_validator_1 = require("express-validator");
 const validar_campos_1 = require("../middlewares/validar-campos");
 const valida_jwt_1 = require("../middlewares/valida-jwt");
-exports.routerUsers = express_1.Router();
-exports.routerUsers.get('/', [valida_jwt_1.validaJWT], uC.getUsuarios);
-exports.routerUsers.post('/', [
-    valida_jwt_1.validaJWT,
-    express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
-    express_validator_1.check('password', 'El password es obligatorio').notEmpty(),
-    express_validator_1.check('email', 'El email es obligatorio').isEmail(),
-    validar_campos_1.validarcampos,
-], uC.crearUsuario);
-exports.routerUsers.put('/:uid', [
+exports.routerHospitales = express_1.Router();
+exports.routerHospitales.get('/', [valida_jwt_1.validaJWT], uC.gethospitales);
+exports.routerHospitales.post('/', [
     valida_jwt_1.validaJWT,
     express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
     validar_campos_1.validarcampos,
-], uC.updateUser);
-exports.routerUsers.delete('/:uid', valida_jwt_1.validaJWT, uC.deleteUser);
-//# sourceMappingURL=usuarios.js.map
+], uC.createHospital);
+exports.routerHospitales.put('/:uid', [
+    valida_jwt_1.validaJWT,
+    express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
+    validar_campos_1.validarcampos,
+], uC.updateHospital);
+exports.routerHospitales.delete('/:uid', valida_jwt_1.validaJWT, uC.deleteHospital);
+//# sourceMappingURL=hospitales.js.map

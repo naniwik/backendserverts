@@ -18,11 +18,20 @@ const usuario_1 = require("../models/usuario");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jwt_1 = require("../helpers/jwt");
 exports.getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const usuarios = yield usuario_1.Usuario.find({}, "nombre email google role");
+    const from = Number(req.query.from) || 0;
+    const count = Number(req.query.count) || 5;
+    console.log(from, count);
+    // const usuarios = await Usuario.find({}, "nombre email google role").skip(from).limit(count);
+    // const total = await Usuario.estimatedDocumentCount();
+    const [usuarios, total] = yield Promise.all([
+        usuario_1.Usuario.find({}, "nombre email google role").skip(from).limit(count),
+        usuario_1.Usuario.estimatedDocumentCount(),
+    ]);
     res.status(200).json({
         ok: true,
         msg: "getUsuarios",
         usuarios,
+        total,
     });
 });
 exports.crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

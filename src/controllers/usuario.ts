@@ -6,12 +6,22 @@ import bcryptjs, { compare } from "bcryptjs";
 import { genJWT } from "../helpers/jwt";
 
 export const getUsuarios = async (req: Request, res: Response) => {
-  const usuarios = await Usuario.find({}, "nombre email google role");
+  const from = Number(req.query.from) || 0;
+  const count = Number(req.query.count) || 5;
+  console.log(from, count);
+
+  // const usuarios = await Usuario.find({}, "nombre email google role").skip(from).limit(count);
+  // const total = await Usuario.estimatedDocumentCount();
+  const [usuarios, total] = await Promise.all([
+    Usuario.find({}, "nombre email google role img").skip(from).limit(count),
+    Usuario.estimatedDocumentCount(),
+  ]);
 
   res.status(200).json({
     ok: true,
     msg: "getUsuarios",
     usuarios,
+    total,
   });
 };
 

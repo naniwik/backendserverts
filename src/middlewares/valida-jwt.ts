@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
+import { Response } from "express";
+import { Request } from "express";
+import { UID } from "custom";
 
-export const validaJWT = (req: any, res: any, next: any) => {
+export const validaJWT = (req: Request, res: Response, next: any) => {
   //leer token
   const token = req.header("x-token");
   console.log(token);
@@ -13,7 +16,7 @@ export const validaJWT = (req: any, res: any, next: any) => {
 
   try {
     console.log("verify");
-    const uid = jwt.verify(token, process.env.JWT_SECRET);
+    const uid: UID = jwt.verify(token, process.env.JWT_SECRET) as UID;
     console.log("uid", uid);
     if (uid) {
       req.uid = uid;
