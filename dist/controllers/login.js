@@ -17,7 +17,7 @@ const usuario_1 = require("../models/usuario");
 // import { validationResult } from "express-validator";
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jwt_1 = require("../helpers/jwt");
-exports.login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     const { email, password } = req.body;
     try {
@@ -54,4 +54,5 @@ exports.login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
+exports.login = login;
 //# sourceMappingURL=login.js.map

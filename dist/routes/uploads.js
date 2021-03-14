@@ -33,4 +33,5 @@ const express_fileupload_1 = __importDefault(require("express-fileupload"));
 exports.routeruploads = express_1.default();
 exports.routeruploads.use(express_fileupload_1.default());
 exports.routeruploads.put("/:tabla/:id", [valida_jwt_1.validaJWT], uC.uploads);
+exports.routeruploads.get("/:tabla/:id", [valida_jwt_1.validaJWT], uC.getImagen);
 //# sourceMappingURL=uploads.js.map

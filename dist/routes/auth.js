@@ -25,6 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.routerLogin = void 0;
 const express_1 = require("express");
 const uC = __importStar(require("../controllers/login"));
+const gC = __importStar(require("../controllers/googleauth"));
 const express_validator_1 = require("express-validator");
 const validar_campos_1 = require("../middlewares/validar-campos");
 exports.routerLogin = express_1.Router();
@@ -33,4 +34,8 @@ exports.routerLogin.post('/', [
     express_validator_1.check('email', 'El email es obligatorio').isEmail(),
     validar_campos_1.validarcampos,
 ], uC.login);
+exports.routerLogin.post('/google', [
+    express_validator_1.check('token', 'El token google es obligatorio').notEmpty(),
+    validar_campos_1.validarcampos,
+], gC.login);
 //# sourceMappingURL=auth.js.map

@@ -17,14 +17,14 @@ const usuario_1 = require("../models/usuario");
 // import { validationResult } from "express-validator";
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jwt_1 = require("../helpers/jwt");
-exports.getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const from = Number(req.query.from) || 0;
     const count = Number(req.query.count) || 5;
     console.log(from, count);
     // const usuarios = await Usuario.find({}, "nombre email google role").skip(from).limit(count);
     // const total = await Usuario.estimatedDocumentCount();
     const [usuarios, total] = yield Promise.all([
-        usuario_1.Usuario.find({}, "nombre email google role").skip(from).limit(count),
+        usuario_1.Usuario.find({}, "nombre email google role img").skip(from).limit(count),
         usuario_1.Usuario.estimatedDocumentCount(),
     ]);
     res.status(200).json({
@@ -34,7 +34,8 @@ exports.getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         total,
     });
 });
-exports.crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUsuarios = getUsuarios;
+const crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     //esto lo hace el middleware
     //   const errores = validationResult(req);
@@ -74,7 +75,8 @@ exports.crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.crearUsuario = crearUsuario;
+const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uid = req.params.uid;
     console.log(uid);
     try {
@@ -115,7 +117,8 @@ exports.updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
-exports.deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.updateUser = updateUser;
+const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uid = req.params.uid;
     console.log(uid);
     try {
@@ -142,4 +145,5 @@ exports.deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
+exports.deleteUser = deleteUser;
 //# sourceMappingURL=usuario.js.map

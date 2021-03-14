@@ -26,6 +26,8 @@ app.use(express.json());
 // DBCon
 dbCon();
 
+app.use(express.static('./src/public'));
+
 // console.log(process.env);
 // usuarios
 // main_user

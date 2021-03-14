@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { actualizarImagen, RUTA } from "../helpers/uploads";
 import path from "path";
 import fs from "fs";
+import { UploadedFile } from "express-fileupload";
 
 export const getImagen = (req: Request, res: Response) => {
   const tabla = req.params.tabla;
@@ -39,7 +40,7 @@ export const uploads = async (req: Request, res: Response) => {
     });
   }
 
-  const file = req.files.imagen;
+  const file = req.files.imagen as UploadedFile;
   console.log("file", file);
   const extension = file.name.split(".").pop();
 

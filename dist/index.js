@@ -23,6 +23,7 @@ app.use(cors_1.default());
 app.use(express_1.default.json());
 // DBCon
 config_1.dbCon();
+app.use(express_1.default.static('./src/public'));
 // console.log(process.env);
 // usuarios
 // main_user

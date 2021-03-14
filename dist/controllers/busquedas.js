@@ -13,7 +13,7 @@ exports.getDocumentos = exports.getbusquedas = void 0;
 const usuario_1 = require("../models/usuario");
 const hospitales_1 = require("../models/hospitales");
 const medico_1 = require("../models/medico");
-exports.getbusquedas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getbusquedas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uid = req.params.uid;
     const regexp = new RegExp(uid, "i");
     const [usuarios, hospitales, medicos] = yield Promise.all([
@@ -30,7 +30,8 @@ exports.getbusquedas = (req, res) => __awaiter(void 0, void 0, void 0, function*
         medicos,
     });
 });
-exports.getDocumentos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getbusquedas = getbusquedas;
+const getDocumentos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tabla = req.params.tabla;
     const termino = req.params.termino;
     const regexp = new RegExp(termino, "i");
@@ -57,4 +58,5 @@ exports.getDocumentos = (req, res) => __awaiter(void 0, void 0, void 0, function
         data,
     });
 });
+exports.getDocumentos = getDocumentos;
 //# sourceMappingURL=busquedas.js.map

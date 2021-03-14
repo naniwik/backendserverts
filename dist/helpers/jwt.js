@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.genJWT = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-exports.genJWT = (uid) => {
+const genJWT = (uid) => {
     return new Promise((resolve, reject) => {
         const payload = {
             uid,
@@ -24,4 +24,5 @@ exports.genJWT = (uid) => {
         });
     });
 };
+exports.genJWT = genJWT;
 //# sourceMappingURL=jwt.js.map

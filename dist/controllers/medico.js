@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMedico = exports.updateMedico = exports.createMedico = exports.getMedicos = void 0;
 const medico_1 = require("../models/medico");
-exports.getMedicos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getMedicos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const medicos = yield medico_1.Medico.find().populate('usuario', 'nombre email img').populate('hospital', 'nombre img');
     res.status(200).json({
         ok: true,
@@ -19,7 +19,8 @@ exports.getMedicos = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         medicos,
     });
 });
-exports.createMedico = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getMedicos = getMedicos;
+const createMedico = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     try {
         const med = new medico_1.Medico(req.body);
@@ -38,7 +39,8 @@ exports.createMedico = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.updateMedico = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createMedico = createMedico;
+const updateMedico = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uid = req.params.uid;
     console.log(uid);
     try {
@@ -66,7 +68,8 @@ exports.updateMedico = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
-exports.deleteMedico = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.updateMedico = updateMedico;
+const deleteMedico = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uid = req.params.uid;
     console.log(uid);
     try {
@@ -92,4 +95,5 @@ exports.deleteMedico = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
+exports.deleteMedico = deleteMedico;
 //# sourceMappingURL=medico.js.map

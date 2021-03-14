@@ -8,11 +8,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploads = void 0;
+exports.uploads = exports.getImagen = void 0;
 const uuid_1 = require("uuid");
 const uploads_1 = require("../helpers/uploads");
-exports.uploads = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const getImagen = (req, res) => {
+    const tabla = req.params.tabla;
+    const id = req.params.id;
+    const pathImg = path_1.default.join(__dirname, `../uploads/${tabla}/${id}`);
+    if (fs_1.default.existsSync(pathImg)) {
+        res.sendFile(pathImg);
+    }
+    else {
+        const noimagepath = path_1.default.join(__dirname, `../uploads/no-image.png`);
+        res.sendFile(noimagepath);
+    }
+};
+exports.getImagen = getImagen;
+const uploads = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tabla = req.params.tabla;
     const id = req.params.id;
     const tiposValidos = ["usuarios", "medicos", "hospitales"];
@@ -45,7 +63,7 @@ exports.uploads = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const nombrearchivo = `${uuidva}.${extension}`;
     //path guardar la imagen
     const ruta = `${uploads_1.RUTA}/${tabla}/${nombrearchivo}`;
-    file.mv(ruta, (err) => {
+    file.mv(ruta, (err) => __awaiter(void 0, void 0, void 0, function* () {
         if (err) {
             console.log(err);
             return res.status(500).json({
@@ -54,7 +72,7 @@ exports.uploads = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 param: [tabla, id, err],
             });
         }
-        const wasok = uploads_1.actualizarImagen(tabla, id, nombrearchivo);
+        const wasok = yield uploads_1.actualizarImagen(tabla, id, nombrearchivo);
         if (wasok) {
             res.status(200).json({
                 ok: true,
@@ -69,6 +87,7 @@ exports.uploads = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 param: [tabla, id, ruta],
             });
         }
-    });
+    }));
 });
+exports.uploads = uploads;
 //# sourceMappingURL=uploads.js.map

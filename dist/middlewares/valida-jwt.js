@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validaJWT = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-exports.validaJWT = (req, res, next) => {
+const validaJWT = (req, res, next) => {
     //leer token
     const token = req.header("x-token");
     console.log(token);
@@ -37,4 +37,5 @@ exports.validaJWT = (req, res, next) => {
         });
     }
 };
+exports.validaJWT = validaJWT;
 //# sourceMappingURL=valida-jwt.js.map

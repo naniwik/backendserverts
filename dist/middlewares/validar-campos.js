@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validarcampos = void 0;
 const express_validator_1 = require("express-validator");
-exports.validarcampos = (req, res, next) => {
+const validarcampos = (req, res, next) => {
     const errores = express_validator_1.validationResult(req);
     console.log(errores);
     if (!errores.isEmpty()) {
@@ -13,4 +13,5 @@ exports.validarcampos = (req, res, next) => {
     }
     next();
 };
+exports.validarcampos = validarcampos;
 //# sourceMappingURL=validar-campos.js.map

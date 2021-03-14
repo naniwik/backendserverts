@@ -8,21 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dbCon = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const dbCon = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield mongoose_1.default.connect(process.env.DB_CON, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true });
-        console.info('db online ');
-    }
-    catch (error) {
-        console.log(error);
-        throw new Error('Error inicial la BD');
-    }
+exports.googleverify = void 0;
+const google_auth_library_1 = require("google-auth-library");
+const client = new google_auth_library_1.OAuth2Client(process.env.GOOGLE_ID);
+const googleverify = (token) => __awaiter(void 0, void 0, void 0, function* () {
+    const ticket = yield client.verifyIdToken({
+        idToken: token,
+        audience: process.env.GOOGLE_ID,
+    });
+    const payload = ticket.getPayload();
+    //console.log(payload);
+    const { name, email, picture } = payload;
+    console.log(name, email, picture);
+    return { name, email, picture };
 });
-exports.dbCon = dbCon;
-//# sourceMappingURL=config.js.map
+exports.googleverify = googleverify;
+//# sourceMappingURL=google-verify.js.map
