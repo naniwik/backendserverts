@@ -31,7 +31,7 @@ const valida_jwt_1 = require("../middlewares/valida-jwt");
 exports.routerUsers = express_1.Router();
 exports.routerUsers.get('/', [valida_jwt_1.validaJWT], uC.getUsuarios);
 exports.routerUsers.post('/', [
-    valida_jwt_1.validaJWT,
+    //validaJWT, //no puede tener json porque se esta creando!!
     express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
     express_validator_1.check('password', 'El password es obligatorio').notEmpty(),
     express_validator_1.check('email', 'El email es obligatorio').isEmail(),

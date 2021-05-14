@@ -33,7 +33,7 @@ export const createHospital = async (req: Request, res: Response) => {
 
 export const updateHospital = async (req: Request, res: Response) => {
   const uid = req.params.uid;
-  console.log(uid);
+  console.log("update hospital", uid);
   try {
     const bd = await Hospital.findById(uid);
     if (!bd) {

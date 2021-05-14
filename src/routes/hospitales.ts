@@ -20,7 +20,7 @@ routerHospitales.post('/', [
 
 routerHospitales.put('/:uid', [
     validaJWT,
-    check('nombre', 'El nombre es obligatorio').notEmpty(),
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     validarcampos,
 ], uC.updateHospital);
 

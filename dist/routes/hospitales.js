@@ -37,7 +37,7 @@ exports.routerHospitales.post('/', [
 ], uC.createHospital);
 exports.routerHospitales.put('/:uid', [
     valida_jwt_1.validaJWT,
-    express_validator_1.check('nombre', 'El nombre es obligatorio').notEmpty(),
+    express_validator_1.check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     validar_campos_1.validarcampos,
 ], uC.updateHospital);
 exports.routerHospitales.delete('/:uid', valida_jwt_1.validaJWT, uC.deleteHospital);

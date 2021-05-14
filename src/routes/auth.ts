@@ -7,6 +7,7 @@ import * as uC from '../controllers/login';
 import * as gC from '../controllers/googleauth';
 import {check} from 'express-validator';
 import {validarcampos} from '../middlewares/validar-campos'
+import { validaJWT } from "../middlewares/valida-jwt";
 
 export const routerLogin = Router();
 
@@ -20,3 +21,7 @@ routerLogin.post('/google', [
     check('token', 'El token google es obligatorio').notEmpty(),
     validarcampos,
 ], gC.login);
+
+routerLogin.get('/renew', [
+    validaJWT,
+], uC.renewToken);

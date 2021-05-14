@@ -13,7 +13,7 @@ export const routerUsers = Router();
 routerUsers.get('/', [validaJWT], uC.getUsuarios);
 
 routerUsers.post('/', [
-    validaJWT,
+    //validaJWT, //no puede tener json porque se esta creando!!
     check('nombre', 'El nombre es obligatorio').notEmpty(),
     check('password', 'El password es obligatorio').notEmpty(),
     check('email', 'El email es obligatorio').isEmail(),

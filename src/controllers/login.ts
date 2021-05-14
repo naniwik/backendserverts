@@ -1,7 +1,6 @@
 import { Usuario } from "../models/usuario";
 import { Response } from "express";
 import { Request } from "express";
-// import { validationResult } from "express-validator";
 import bcryptjs, { compare } from "bcryptjs";
 import { genJWT } from "../helpers/jwt";
 
@@ -43,4 +42,18 @@ export const login = async (req: Request, res: Response) => {
       msg: "Error inesperado",
     });
   }
+};
+
+export const renewToken= async (req: Request, res: Response) => {
+
+  const uid = req.uid;
+
+  const token = await genJWT(uid.uid);
+    res.status(200).json({
+      ok: true,
+      msg: "logeado",
+      uid,
+      token
+    });
+
 };

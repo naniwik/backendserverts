@@ -28,6 +28,7 @@ const uC = __importStar(require("../controllers/login"));
 const gC = __importStar(require("../controllers/googleauth"));
 const express_validator_1 = require("express-validator");
 const validar_campos_1 = require("../middlewares/validar-campos");
+const valida_jwt_1 = require("../middlewares/valida-jwt");
 exports.routerLogin = express_1.Router();
 exports.routerLogin.post('/', [
     express_validator_1.check('password', 'El password es obligatorio').notEmpty(),
@@ -38,4 +39,7 @@ exports.routerLogin.post('/google', [
     express_validator_1.check('token', 'El token google es obligatorio').notEmpty(),
     validar_campos_1.validarcampos,
 ], gC.login);
+exports.routerLogin.get('/renew', [
+    valida_jwt_1.validaJWT,
+], uC.renewToken);
 //# sourceMappingURL=auth.js.map

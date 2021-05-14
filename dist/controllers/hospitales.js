@@ -42,7 +42,7 @@ const createHospital = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createHospital = createHospital;
 const updateHospital = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uid = req.params.uid;
-    console.log(uid);
+    console.log("update hospital", uid);
     try {
         const bd = yield hospitales_1.Hospital.findById(uid);
         if (!bd) {

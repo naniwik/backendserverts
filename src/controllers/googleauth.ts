@@ -30,7 +30,7 @@ try{
     await usuario.save();
     const jwtoken = await genJWT(usuario.id);
 
-    return res.status(400).json({
+    return res.status(200).json({
         ok: true,
         msg: "google sign in, exito",
         token : jwtoken

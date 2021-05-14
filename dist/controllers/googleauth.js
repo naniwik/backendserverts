@@ -38,7 +38,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(400).json({
             ok: true,
             msg: "google sign in, exito",
-            jwtoken
+            token: jwtoken
         });
     }
     catch (err) {

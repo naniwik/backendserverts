@@ -53,7 +53,7 @@ app.use("/api/usuarios", routerUsers);
 //     })
 // });
 
-app.use("/login", routerLogin);
+app.use("/api/login", routerLogin);
 
 app.use("/api/hospitales", routerHospitales);
 app.use("/api/medico", routerMedicos);

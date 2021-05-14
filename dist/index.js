@@ -45,7 +45,7 @@ app.use("/api/usuarios", usuarios_1.routerUsers);
 //         }]
 //     })
 // });
-app.use("/login", auth_1.routerLogin);
+app.use("/api/login", auth_1.routerLogin);
 app.use("/api/hospitales", hospitales_1.routerHospitales);
 app.use("/api/medico", medico_1.routerMedicos);
 app.use("/api/todo", busquedas_1.routerbusquedas);

@@ -12,9 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = void 0;
+exports.renewToken = exports.login = void 0;
 const usuario_1 = require("../models/usuario");
-// import { validationResult } from "express-validator";
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jwt_1 = require("../helpers/jwt");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,4 +54,15 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.login = login;
+const renewToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const uid = req.uid;
+    //const token = await genJWT(uid.uid);
+    res.status(200).json({
+        ok: true,
+        msg: "logeado",
+        uid,
+        // token
+    });
+});
+exports.renewToken = renewToken;
 //# sourceMappingURL=login.js.map
